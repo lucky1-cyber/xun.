@@ -1,0 +1,523 @@
+/* ===== 首页布局样式 ===== */
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #f4ede3, #e8dcc8);
+    overflow-x: hidden;
+}
+
+/* ===== 中部核心视觉区 (70%高度) ===== */
+.hero-section {
+    margin-top: 80px;
+    height: 70vh;
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.3) 0%, rgba(139, 111, 71, 0.3) 100%),
+                url('../images/hero-bg.jpg') no-repeat center center;
+    background-size: contain;
+    background-color: #f4ede3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    /* 添加渐变背景动画 */
+    animation: backgroundShift 15s ease-in-out infinite;
+}
+
+/* 渐变背景移动动画 */
+@keyframes backgroundShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* 水墨纹理背景 - 增加动画 */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at 20% 30%, rgba(139, 111, 71, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+    z-index: 0;
+    animation: waterInkFlow 20s ease-in-out infinite;
+}
+
+/* 水墨流动动画 */
+@keyframes waterInkFlow {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(20px, -10px) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* 添加漂浮装饰元素 */
+.hero-section::after {
+    content: "🎋";
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.15;
+    top: 10%;
+    right: 10%;
+    animation: floatDecor 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+@keyframes floatDecor {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 1000px;
+    padding: 30px;
+    /* 添加整体淡入动画 */
+    animation: contentFadeIn 1.5s ease-out;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #5d4422;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    /* 添加文字渐现动画 */
+    animation: titleSlideIn 1.2s ease-out;
+    position: relative;
+}
+
+@keyframes titleSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+        letter-spacing: 10px;
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        letter-spacing: 5px;
+    }
+}
+
+/* 标题发光效果 */
+.hero-title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(212, 165, 116, 0.6),
+                     0 0 30px rgba(212, 165, 116, 0.4);
+    }
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #8b6f47;
+    font-weight: 500;
+    /* 添加延迟淡入动画 */
+    animation: subtitleFadeIn 1.5s ease-out 0.3s backwards;
+}
+
+@keyframes subtitleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-description {
+    margin: 30px auto;
+    max-width: 800px;
+    text-align: left;
+    /* 添加容器动画 */
+    animation: descriptionSlideIn 1.5s ease-out 0.5s backwards;
+}
+
+@keyframes descriptionSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.hero-description p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #5d4422;
+    margin-bottom: 15px;
+    padding: 12px 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    border-left: 4px solid #d4a574;
+    /* 添加滑入动画 */
+    animation: paragraphSlideIn 0.8s ease-out backwards;
+    transition: all 0.3s ease;
+}
+
+/* 段落悬停效果 */
+.hero-description p:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateX(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes paragraphSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.target-text {
+    animation-delay: 0.7s;
+}
+
+.tech-text {
+    animation-delay: 0.9s;
+}
+
+.target-text strong,
+.tech-text strong {
+    color: #8b6f47;
+    font-weight: bold;
+    position: relative;
+}
+
+/* 关键词下划线动画 */
+.target-text strong::after,
+.tech-text strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #d4a574, #8b6f47);
+    animation: underlineExpand 2s ease-out 1.5s forwards;
+}
+
+@keyframes underlineExpand {
+    to {
+        width: 100%;
+    }
+}
+
+/* 模式卡片 */
+.mode-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+    /* 添加整体动画 */
+    animation: cardsAppear 1.2s ease-out 1.1s backwards;
+}
+
+@keyframes cardsAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.mode-card {
+    background: linear-gradient(135deg, #fff 0%, #f9f5f0 100%);
+    padding: 25px;
+    border-radius: 15px;
+    width: 200px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    /* 添加初始动画 */
+    animation: cardBounceIn 0.8s ease-out backwards;
+}
+
+/* 卡片依次弹入 */
+.mode-card:nth-child(1) {
+    animation-delay: 1.3s;
+}
+
+.mode-card:nth-child(2) {
+    animation-delay: 1.5s;
+}
+
+@keyframes cardBounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 卡片光泽效果 */
+.mode-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 70%);
+    transform: rotate(45deg);
+    animation: cardShine 3s ease-in-out infinite;
+}
+
+@keyframes cardShine {
+    0%, 100% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    50% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.mode-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(212, 165, 116, 0.4);
+    /* 悬停时边框发光 */
+    border: 2px solid rgba(212, 165, 116, 0.6);
+}
+
+/* 悬停时停止光泽动画 */
+.mode-card:hover::before {
+    animation-play-state: paused;
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+    display: inline-block;
+    /* 添加图标摇摆动画 */
+    animation: iconSwing 2s ease-in-out infinite;
+}
+
+@keyframes iconSwing {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.mode-card:hover .card-icon {
+    transform: scale(1.3) rotate(360deg);
+    animation: none; /* 悬停时停止摇摆 */
+}
+
+.mode-card h3 {
+    font-size: 20px;
+    color: #5d4422;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.mode-card:hover h3 {
+    color: #d4a574;
+}
+
+.mode-card p {
+    font-size: 14px;
+    color: #8b6f47;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+.mode-card:hover p {
+    color: #5d4422;
+}
+
+/* ===== 底部功能入口 (20%高度) ===== */
+.bottom-section {
+    height: 20vh;
+    background: linear-gradient(to top, #d4a574, #e8dcc8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    /* 添加底部区域动画 */
+    animation: bottomSlideUp 1s ease-out 1.7s backwards;
+}
+
+@keyframes bottomSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 底部装饰波浪 */
+.bottom-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(212, 165, 116, 0.2));
+    border-radius: 50%;
+    animation: waveMove 8s ease-in-out infinite;
+}
+
+@keyframes waveMove {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-25%);
+    }
+}
+
+.button-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* 按钮颜色 */
+.btn-start {
+    background: linear-gradient(135deg, #8b6f47 0%, #5d4422 100%);
+    color: #fff;
+    /* 添加脉冲动画 */
+    animation: buttonPulse 2s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    50% {
+        box-shadow: 0 6px 25px rgba(139, 111, 71, 0.6);
+    }
+}
+
+.btn-intro {
+    background: linear-gradient(135deg, #d4a574 0%, #b8936f 100%);
+    color: #fff;
+    animation: buttonPulse 2s ease-in-out 0.5s infinite;
+}
+
+/* 按钮悬停时停止脉冲 */
+.main-btn:hover {
+    animation: none;
+}
+
+/* ===== 响应式调整 ===== */
+@media (max-height: 700px) {
+    .hero-title {
+        font-size: 42px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .mode-cards {
+        gap: 20px;
+    }
+    
+    .mode-card {
+        width: 160px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .mode-cards {
+        flex-direction: column;
+    }
+}
+
+/* 添加鼠标跟随光效 */
+@keyframes cursorGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(212, 165, 116, 0.6);
+    }
+}

@@ -1,0 +1,348 @@
+/* ===== 非遗寻踪 - 动画效果增强样式 ===== */
+/* 配合JavaScript交互使用 */
+
+/* 平滑过渡 */
+* {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* 标记点悬停效果增强 */
+.marker {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.marker:hover .marker-icon {
+    filter: drop-shadow(0 4px 12px rgba(212, 165, 116, 0.6));
+}
+
+/* 标记点激活状态 */
+.marker.active {
+    z-index: 100;
+}
+
+.marker.active .marker-icon {
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 按钮悬停效果优化 */
+.main-btn, .control-btn, .action-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.main-btn::before,
+.control-btn::before,
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.main-btn:hover::before,
+.control-btn:hover::before,
+.action-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Tab切换动画 */
+.tab-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #d4a574;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.tab-btn.active::after {
+    width: 80%;
+}
+
+/* 内容区域淡入效果 */
+.content-body {
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 卡片悬停效果 */
+.mode-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.mode-card .card-icon {
+    transition: transform 0.3s ease;
+}
+
+.mode-card:hover .card-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* 任务项动画 */
+.task-item {
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    background: rgba(212, 165, 116, 0.1);
+    padding-left: 5px;
+    border-radius: 5px;
+}
+
+.task-item input[type="checkbox"] {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.task-item input[type="checkbox"]:checked {
+    transform: scale(1.2);
+}
+
+/* 罗盘旋转动画增强 */
+.compass {
+    transition: transform 0.3s ease;
+}
+
+.compass:hover {
+    transform: scale(1.1);
+}
+
+.compass:hover .compass-pointer {
+    animation-play-state: paused;
+}
+
+/* 导航栏链接动画 */
+.nav-menu li a {
+    position: relative;
+}
+
+.nav-menu li a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: white;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::before,
+.nav-menu li a.active::before {
+    width: 80%;
+}
+
+/* 特征项动画 */
+.feature-item {
+    animation: slideInLeft 0.6s ease;
+    animation-fill-mode: backwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 特殊功能列表动画 */
+.special-features ul li {
+    animation: fadeIn 0.6s ease;
+    animation-fill-mode: backwards;
+}
+
+.special-features ul li:nth-child(1) { animation-delay: 0.1s; }
+.special-features ul li:nth-child(2) { animation-delay: 0.2s; }
+.special-features ul li:nth-child(3) { animation-delay: 0.3s; }
+.special-features ul li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 地图容器悬停效果 */
+.map-container {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+/* SVG地图动画 */
+.map-svg path {
+    transition: all 0.4s ease;
+}
+
+.map-svg path:hover {
+    fill: #6f9296;
+    filter: drop-shadow(0 4px 15px rgba(0,0,0,0.3));
+}
+
+/* 用户状态栏动画 */
+.user-status {
+    animation: slideInDown 0.6s ease;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HP条动画 */
+.hp-fill {
+    animation: fillBar 1.5s ease;
+}
+
+@keyframes fillBar {
+    from {
+        width: 0%;
+    }
+}
+
+/* 欢迎图标脉冲动画 */
+.welcome-icon {
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* 响应式动画调整 */
+@media (max-width: 1024px) {
+    .mode-card:hover {
+        transform: translateY(-3px);
+    }
+    
+    .map-container:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* 减弱动画效果选项(用户偏好) */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 加载状态动画 */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #d4a574;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 成功提示动画 */
+.success-message {
+    animation: successBounce 0.6s ease;
+}
+
+@keyframes successBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* 错误提示抖动动画 */
+.error-shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* 渐变背景动画 */
+.hero-section {
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}

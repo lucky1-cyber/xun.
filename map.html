@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三维地图场景 - 非遗寻踪</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <h1 class="site-title">非遗寻踪 - 三维地图场景</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html">启动页</a></li>
+                <li><a href="map.html" class="active">三维地图场景</a></li>
+                <li><a href="game.html">迷你游戏</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <main class="map-main">
+        <!-- 左侧地图区 (50%宽) - 中国地图非遗点 -->
+        <section class="map-section">
+            <!-- 用户状态栏 -->
+            <div class="user-status">
+                <div class="avatar-box">
+                    <div class="avatar">🐯</div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-title">
+                <h2>中国非遗地图</h2>
+                <p class="map-hint">点击文物图标探索非遗项目</p>
+            </div>
+            
+            <!-- 中国地图容器 -->
+            <div class="map-container">
+                <!-- 地图背景 - 中国水墨风格 -->
+                <div class="china-map">
+                    <svg viewBox="0 0 600 500" class="map-svg">
+                        <!-- 中国地图轮廓简化版 -->
+                        <path d="M 50,150 L 150,80 L 280,100 L 400,90 L 520,130 L 550,200 L 520,280 L 480,350 L 400,400 L 300,420 L 200,410 L 120,380 L 80,320 L 50,250 Z" 
+                              fill="#5f7c7f" stroke="#3d5a5c" stroke-width="3" opacity="0.9"/>
+                        
+                        <!-- 山水背景装饰 -->
+                        <g opacity="0.3">
+                            <ellipse cx="100" cy="100" rx="40" ry="60" fill="#2c3e3f"/>
+                            <ellipse cx="500" cy="120" rx="35" ry="55" fill="#2c3e3f"/>
+                            <ellipse cx="150" cy="350" rx="30" ry="50" fill="#2c3e3f"/>
+                        </g>
+                    </svg>
+
+                    <!-- 非遗文物标记点 -->
+                    <div class="heritage-markers">
+                        <!-- 剪纸 - 东北 -->
+                        <div class="marker marker-jianzhi" style="top: 15%; left: 70%;" data-item="剪纸">
+                            <div class="marker-icon">🔴</div>
+                            <div class="marker-tooltip">剪纸艺术</div>
+                        </div>
+
+                        <!-- 青花瓷 - 华东 -->
+                        <div class="marker marker-ciqi" style="top: 35%; left: 60%;" data-item="青花瓷">
+                            <div class="marker-icon">🏺</div>
+                            <div class="marker-tooltip">景德镇青花瓷</div>
+                        </div>
+
+                        <!-- 云锦 - 华中 -->
+                        <div class="marker marker-yunjin" style="top: 45%; left: 40%;" data-item="云锦">
+                            <div class="marker-icon">🟡</div>
+                            <div class="marker-tooltip">南京云锦</div>
+                        </div>
+
+                        <!-- 花鼓戏 - 西南 -->
+                        <div class="marker marker-xiqu" style="top: 60%; left: 35%;" data-item="花鼓戏">
+                            <div class="marker-icon">🎭</div>
+                            <div class="marker-tooltip">花鼓戏</div>
+                        </div>
+
+                        <!-- 唐卡 - 西北 -->
+                        <div class="marker marker-tangka" style="top: 30%; left: 20%;" data-item="唐卡">
+                            <div class="marker-icon">🟤</div>
+                            <div class="marker-tooltip">藏族唐卡</div>
+                        </div>
+
+                        <!-- 木雕 - 华北 -->
+                        <div class="marker marker-muxie" style="top: 25%; left: 45%;" data-item="木雕">
+                            <div class="marker-icon">🟠</div>
+                            <div class="marker-tooltip">木雕工艺</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 左下角罗盘导航 -->
+                <div class="compass">
+                    <div class="compass-ring"></div>
+                    <div class="compass-pointer"></div>
+                </div>
+            </div>
+
+            <!-- 地图控制按钮 -->
+            <div class="map-controls">
+                <button class="control-btn">🗺️ 导航模式</button>
+                <button class="control-btn">🎮 漫游模式</button>
+            </div>
+        </section>
+
+        <!-- 右侧内容区 (50%宽) - 非遗项目详情/知识卡片/任务 -->
+        <section class="content-section">
+            <!-- 内容头部 -->
+            <div class="content-header">
+                <h2 class="content-title">非遗项目场景</h2>
+                <div class="content-tabs">
+                    <button class="tab-btn active">知识卡片</button>
+                    <button class="tab-btn">制作过程</button>
+                    <button class="tab-btn">互动任务</button>
+                </div>
+            </div>
+
+            <!-- 内容主体 -->
+            <div class="content-body">
+                <!-- 欢迎界面 -->
+                <div class="welcome-panel">
+                    <div class="welcome-icon">🎯</div>
+                    <h3>欢迎来到非遗寻踪世界</h3>
+                    <p>请点击左侧地图上的文物图标，开始你的非遗探索之旅</p>
+                    
+                    <div class="features-intro">
+                        <h4>核心交互逻辑：</h4>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span class="feature-icon">🖱️</span>
+                                <div class="feature-text">
+                                    <strong>点击探索：</strong>点击地图标记查看非遗项目详细信息
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🔍</span>
+                                <div class="feature-text">
+                                    <strong>切换模式：</strong>在导航模式和漫游模式之间自由切换
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✨</span>
+                                <div class="feature-text">
+                                    <strong>学习互动：</strong>完成互动任务，解锁"非遗守护者"成就
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="special-features">
+                        <h4>特色功能：</h4>
+                        <ul>
+                            <li><strong>真实图片：</strong>展示非遗项目的真实照片</li>
+                            <li><strong>动态叙事：</strong>了解非遗项目的制作流程</li>
+                            <li><strong>任务系统：</strong>通过完成任务加深理解</li>
+                            <li><strong>游戏化体验：</strong>沉浸式非遗文化探索</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 非遗详情面板（默认隐藏） -->
+                <div class="heritage-detail" style="display: none;">
+                    <div class="detail-image">
+                        <div class="image-placeholder">非遗项目图片</div>
+                    </div>
+                    <div class="detail-info">
+                        <h3 class="heritage-name">非遗项目名称</h3>
+                        <div class="heritage-tags">
+                            <span class="tag">传统技艺</span>
+                            <span class="tag">国家级</span>
+                        </div>
+                        <div class="heritage-desc">
+                            <p>这里显示非遗项目的详细介绍...</p>
+                        </div>
+                    </div>
+                    <div class="task-panel">
+                        <h4>🎮 互动任务</h4>
+                        <div class="task-item">
+                            <input type="checkbox" id="task1">
+                            <label for="task1">了解制作步骤</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" id="task2">
+                            <label for="task2">虚拟体验</label>
+                        </div>
+                        <div class="task-item">
+                            <input type="checkbox" id="task3">
+                            <label for="task3">完成学习</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容底部 -->
+            <div class="content-footer">
+                <button class="action-btn btn-game">🎮 开始迷你游戏</button>
+                <a href="index.html" class="action-btn btn-back">⬅️ 返回首页</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript交互功能 -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迷你游戏 - 非遗寻踪</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <h1 class="site-title">非遗寻踪 - 迷你游戏</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html">启动页</a></li>
+                <li><a href="map.html">三维地图场景</a></li>
+                <li><a href="game.html" class="active">迷你游戏</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 游戏主容器 -->
+    <main class="game-main">
+        <!-- 游戏选择区 -->
+        <section class="game-selection">
+            <h2 class="section-title">选择你的游戏</h2>
+            <p class="section-subtitle">通过趣味游戏，学习非遗知识</p>
+            
+            <div class="game-cards">
+                <!-- 游戏1: 非遗记忆卡片 -->
+                <div class="game-card" data-game="memory">
+                    <div class="game-icon">🎴</div>
+                    <h3>非遗记忆卡片</h3>
+                    <p>翻转卡片，找到匹配的非遗项目</p>
+                    <div class="game-meta">
+                        <span class="difficulty easy">★☆☆</span>
+                        <span class="time">3-5分钟</span>
+                    </div>
+                    <button class="play-btn" onclick="startMemoryGame()">开始游戏</button>
+                </div>
+
+                <!-- 游戏2: 非遗知识问答 -->
+                <div class="game-card" data-game="quiz">
+                    <div class="game-icon">❓</div>
+                    <h3>非遗知识问答</h3>
+                    <p>回答问题，测试你的非遗知识</p>
+                    <div class="game-meta">
+                        <span class="difficulty medium">★★☆</span>
+                        <span class="time">5-8分钟</span>
+                    </div>
+                    <button class="play-btn" onclick="startQuizGame()">开始游戏</button>
+                </div>
+
+                <!-- 游戏3: 非遗拼图 -->
+                <div class="game-card" data-game="puzzle">
+                    <div class="game-icon">🧩</div>
+                    <h3>非遗拼图挑战</h3>
+                    <p>拼接图片，还原非遗作品</p>
+                    <div class="game-meta">
+                        <span class="difficulty hard">★★★</span>
+                        <span class="time">8-10分钟</span>
+                    </div>
+                    <button class="play-btn" onclick="startPuzzleGame()">开始游戏</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 游戏区域（默认隐藏） -->
+        <section class="game-area" id="gameArea" style="display: none;">
+            <div class="game-header">
+                <button class="back-btn" onclick="backToSelection()">⬅️ 返回</button>
+                <h3 id="gameTitle">游戏标题</h3>
+                <div class="game-stats">
+                    <span id="gameScore">得分: 0</span>
+                    <span id="gameTime">时间: 0:00</span>
+                </div>
+            </div>
+
+            <!-- 记忆卡片游戏 -->
+            <div class="memory-game" id="memoryGame" style="display: none;">
+                <div class="game-board" id="memoryBoard">
+                    <!-- 卡片将通过JavaScript动态生成 -->
+                </div>
+                <div class="game-info">
+                    <p>翻开数: <span id="flips">0</span></p>
+                    <p>已匹配: <span id="matches">0/6</span></p>
+                </div>
+            </div>
+
+            <!-- 知识问答游戏 -->
+            <div class="quiz-game" id="quizGame" style="display: none;">
+                <div class="quiz-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quizProgress"></div>
+                    </div>
+                    <div class="question-card">
+                        <h4 id="questionNumber">问题 1/10</h4>
+                        <p id="questionText">问题内容...</p>
+                        <div class="options" id="optionsContainer">
+                            <!-- 选项将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                    <div class="quiz-result" id="quizResult" style="display: none;">
+                        <h3>游戏结束！</h3>
+                        <p>正确率: <span id="accuracy">0%</span></p>
+                        <p>得分: <span id="finalScore">0</span></p>
+                        <button class="restart-btn" onclick="restartQuiz()">再玩一次</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 拼图游戏 -->
+            <div class="puzzle-game" id="puzzleGame" style="display: none;">
+                <div class="puzzle-preview">
+                    <img id="puzzlePreview" src="" alt="拼图预览">
+                    <p>参考图片</p>
+                </div>
+                <div class="puzzle-board" id="puzzleBoard">
+                    <!-- 拼图块将通过JavaScript动态生成 -->
+                </div>
+                <div class="puzzle-info">
+                    <p>移动次数: <span id="moves">0</span></p>
+                    <button class="hint-btn" onclick="showHint()">💡 提示</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 排行榜区域 -->
+        <section class="leaderboard">
+            <h2 class="section-title">🏆 排行榜</h2>
+            <div class="leaderboard-tabs">
+                <button class="tab-btn active" onclick="showLeaderboard('memory')">记忆卡片</button>
+                <button class="tab-btn" onclick="showLeaderboard('quiz')">知识问答</button>
+                <button class="tab-btn" onclick="showLeaderboard('puzzle')">拼图挑战</button>
+            </div>
+            <div class="leaderboard-content" id="leaderboardContent">
+                <div class="leaderboard-item">
+                    <span class="rank">1</span>
+                    <span class="player">玩家A</span>
+                    <span class="score">1500分</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">2</span>
+                    <span class="player">玩家B</span>
+                    <span class="score">1350分</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">3</span>
+                    <span class="player">玩家C</span>
+                    <span class="score">1200分</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="js/game.js"></script>
+</body>
+</html>
